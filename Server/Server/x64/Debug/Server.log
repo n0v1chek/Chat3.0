@@ -1,0 +1,5 @@
+﻿  MyListenSocket.cpp
+  Server.cpp
+e:\programming\group\C++\console\05\chat\Server\Server\Server.cpp(37,104): warning C4312: приведение типов: преобразование из "int" в "LPVOID" большего размера
+  Создание кода...
+  Server.vcxproj -> E:\programming\group\C++\console\05\chat\Server\x64\Debug\Server.exe
