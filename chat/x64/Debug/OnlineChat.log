@@ -1,0 +1,10 @@
+﻿  BaseApp.cpp
+E:\programming\group\C++\console\05\chat\chat\BaseApp.cpp(19,34): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+E:\programming\group\C++\console\05\chat\chat\BaseApp.cpp(20,41): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+E:\programming\group\C++\console\05\chat\chat\BaseApp.cpp(22,53): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+E:\programming\group\C++\console\05\chat\chat\BaseApp.cpp(49,47): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  CliBaseApp.cpp
+  MySocket.cpp
+E:\programming\group\C++\console\05\chat\chat\MySocket.cpp(48,27): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Создание кода...
+  OnlineChat.vcxproj -> E:\programming\group\C++\console\05\chat\chat\x64\Debug\OnlineChat.exe

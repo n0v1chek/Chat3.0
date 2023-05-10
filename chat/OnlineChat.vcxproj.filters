@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="CliBaseApp.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="CliMessage.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="CliPrivateUserData.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="CliUserData.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Message.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="PrivateUserData.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="UserData.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseApp.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="SHA1.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="MySocket.cpp">
+      <Filter>cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="cpp">
+      <UniqueIdentifier>{8e69ecce-d1a4-4624-9840-68ed7165bc36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hpp">
+      <UniqueIdentifier>{ab2029b0-89a7-4e99-a6b7-804553ada5ae}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BaseApp.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="Cli.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="CliBaseApp.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="CliMessage.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="CliPrivateUserData.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="CliUserData.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="Message.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="PrivateUserData.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="UserData.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="SHA1.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+    <ClInclude Include="MySocket.h">
+      <Filter>hpp</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

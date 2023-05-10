@@ -1,0 +1,2 @@
+E:\chrome\chat2.0-main\chat2.0-main\x64\Debug\OnlineChat.exe
+E:\programming\group\C++\console\05\chat\chat\x64\Debug\OnlineChat.exe
