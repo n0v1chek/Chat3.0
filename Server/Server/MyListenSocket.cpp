@@ -1,6 +1,8 @@
 #include "MyListenSocket.h"
 
 MyListenSocket::MyListenSocket() {
+	db.set("myDB.db");
+
 	this->Counter = 0;
 	// создание библиотеки
 	this->createVersion();
@@ -69,6 +71,58 @@ bool MyListenSocket::ProcessPacket(int index, Packet packettype) {
 		msg[msg_size] = '\0';
 		// получение сообщение от клиента
 		recv(Connections[index], msg, msg_size, NULL);
+
+		
+
+		// ПРОВЕРКА ПОЛУЧЕННОГО ТИПА ДАННЫХ: (ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЕ"user"|СООБЩЕНИЕ"msg"|ПРИВАТНОЕ СООБЩЕНИЕ"pm")
+		// ДЛЯ ЗАПИСИ ПОЛУЧЕННЫХ СЕРВЕРОМ ДАННЫХ В БД
+		std::string message(reinterpret_cast<char const*>(msg));
+		std::string type = message.substr(0, message.find("_*_"));
+
+		int p = message.find(':');
+		int pos1 = type.length() + 3;
+		int pos2 = p - pos1;
+		int len = message.length() - pos2 - 1 - pos1;
+
+		std::string login = message.substr(pos1, pos2);
+		std::string data = message.substr(p+1, message.length() - p);
+
+		// сообщение в общий чат
+		if (type == "msg") {
+			// создание таблицы, если она не существует
+			char* result = db.setQuery("CREATE TABLE IF NOT EXISTS tchat(ch_sender varchar(30), ch_time DATETIME, ch_msg TEXT);");
+			// запись сообщения в чат
+			result = db.setQuery("INSERT INTO tchat(ch_sender, ch_time, ch_msg) VALUES ('" + login + "', DATETIME(), '" + data + "');");
+		}
+		// приватное сообщение
+		if (type == "pm") {
+			int pos = login.find('&');
+			// получатель
+			std::string sender = login.substr(0, pos);
+			// отправитель
+			std::string recipient = login.substr(pos+1, login.length() - pos +1);
+
+			// создание таблицы, если она не существует
+			char* result = db.setQuery("CREATE TABLE IF NOT EXISTS tprivatechat(ch_sender varchar(30), ch_recipient varchar(30), ch_time DATETIME, ch_msg TEXT);");
+			// запись сообщения в приватный чат
+			result = db.setQuery("INSERT INTO tprivatechat(ch_sender, ch_recipient, ch_time, ch_msg) VALUES ('" + sender + "', '"+ recipient +"', DATETIME(), '" + data + "');");
+			int t = 34;
+		}
+		// регистрация пользователя
+		if (type == "user") {
+			// создание таблицы, если она не существует
+			db.setQuery("CREATE TABLE IF NOT EXISTS tusers(u_login varchar(30) unique, u_pass varchar(30));");
+
+			// чтение данных таблицы БД в строчный вектор векторов
+			std::string query = "SELECT u_login, u_pass FROM tusers WHERE u_login = '" + login + "'";
+			string fields[] = { "u_login", "u_pass" };
+			// если такого пользователя в БД нет, записать его в таблицу
+			vector<vector<std::string>> table = db.readTable(query, 3, fields);
+			if (table.size() == 0) {
+				db.setQuery("INSERT INTO tusers(u_login, u_pass) VALUES ('"+login+"', '"+data+"');");
+			}
+		}
+
 
 		for (int i = 0; i < Counter; i++) {
 			Packet msgtype = P_ChatMessage;// тип передачи данных

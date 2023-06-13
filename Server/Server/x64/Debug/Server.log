@@ -1,5 +1,9 @@
 ﻿  MyListenSocket.cpp
+e:\programming\group\C++\console\06\ServerChat\Server\Server\MyListenSocket.cpp(82,28): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+e:\programming\group\C++\console\06\ServerChat\Server\Server\MyListenSocket.cpp(83,31): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+e:\programming\group\C++\console\06\ServerChat\Server\Server\MyListenSocket.cpp(85,47): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+e:\programming\group\C++\console\06\ServerChat\Server\Server\MyListenSocket.cpp(99,29): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
   Server.cpp
-e:\programming\group\C++\console\05\chat\Server\Server\Server.cpp(37,104): warning C4312: приведение типов: преобразование из "int" в "LPVOID" большего размера
+e:\programming\group\C++\console\06\ServerChat\Server\Server\Server.cpp(37,104): warning C4312: приведение типов: преобразование из "int" в "LPVOID" большего размера
   Создание кода...
-  Server.vcxproj -> E:\programming\group\C++\console\05\chat\Server\x64\Debug\Server.exe
+  Server.vcxproj -> E:\programming\group\C++\console\06\ServerChat\Server\x64\Debug\Server.exe

@@ -1,4 +1,6 @@
 #include "MyListenSocket.h"
+#include "sqlite/sqlite3.h"
+
 MyListenSocket ListenSocket;
 
 // обработка сообщений клиентов в параллельном потоке
@@ -19,7 +21,6 @@ static void ClientHandler(int index) {
 }
 
 int main(int argc, char* argv[]) {
-
 	setlocale(LC_ALL, "RU");// кириллица вывода в консоль
 	
 	std::cout << "Сервер готов к работе и ожидает подключения...\n";
@@ -32,7 +33,6 @@ int main(int argc, char* argv[]) {
 		}
 		else {
 			std::cout << "Новый пользователь подключился к чату!\n";
-			//ListenSocket.SendMessageToCLient();
 			// создание дополнительного потока для клиента
 			ListenSocket.Handle[i] = CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)ClientHandler, (LPVOID)(i), NULL, NULL);
 

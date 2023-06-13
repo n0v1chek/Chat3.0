@@ -1,7 +1,9 @@
 #pragma once
 #pragma comment(lib, "ws2_32.lib")// для доступа к некоторым функциям
 #include <winsock2.h>
+#include "SQLite.h"
 #include <iostream>
+#include <vector>
 // устранение предупреждений
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #pragma warning(disable: 4996)
@@ -34,7 +36,7 @@ public:
 	SOCKET sListen;
 	// новое подключение
 	SOCKET newConnection;
-
+	SQLite db;
 
 
 	// конструктор класса
