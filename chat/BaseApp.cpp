@@ -12,7 +12,6 @@ void ClientHandler() {
         // обработка полученного пакета данных
         std::string msg = Socket.ProcessPacket(packettype);
         if (msg != "") {
-            
             // проверка полученного типа данных: (информация о пользователе|сообщение)
             std::string type = msg.substr(0, msg.find("_*_"));
 
