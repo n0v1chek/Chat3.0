@@ -1,5 +1,12 @@
 #include "MyListenSocket.h"
 
+
+// статические поля класса Logger
+HANDLE Logger::hMutex;
+std::ofstream Logger::ofs;// запись в файл
+std::ifstream Logger::ifs;// чтение из файла
+std::string Logger::login, Logger::data;
+
 MyListenSocket::MyListenSocket() {
 	db.set("myDB.db");
 
@@ -59,6 +66,7 @@ bool MyListenSocket::CreateConnection(int indexConnection)
 	return 1;
 }
 
+
 // пакет обработки сообщения от клиента и рассылка сообщения всем клиентам
 bool MyListenSocket::ProcessPacket(int index, Packet packettype) {
 	switch (packettype) {
@@ -87,6 +95,16 @@ bool MyListenSocket::ProcessPacket(int index, Packet packettype) {
 		std::string login = message.substr(pos1, pos2);
 		std::string data = message.substr(p+1, message.length() - p);
 
+
+
+		if (type == "msg" || type == "pm") {
+			// установка данных в объект класса для записи в файл
+			log.setData(data);
+			log.setLogin(login);
+			Sleep(5);
+		}
+
+
 		// сообщение в общий чат
 		if (type == "msg") {
 			// создание таблицы, если она не существует
@@ -106,7 +124,6 @@ bool MyListenSocket::ProcessPacket(int index, Packet packettype) {
 			char* result = db.setQuery("CREATE TABLE IF NOT EXISTS tprivatechat(ch_sender varchar(30), ch_recipient varchar(30), ch_time DATETIME, ch_msg TEXT);");
 			// запись сообщения в приватный чат
 			result = db.setQuery("INSERT INTO tprivatechat(ch_sender, ch_recipient, ch_time, ch_msg) VALUES ('" + sender + "', '"+ recipient +"', DATETIME(), '" + data + "');");
-			int t = 34;
 		}
 		// регистрация пользователя
 		if (type == "user") {

@@ -1,5 +1,7 @@
 #include "MyListenSocket.h"
 #include "sqlite/sqlite3.h"
+#include <string.h>// библиотека для работы со строками
+
 
 MyListenSocket ListenSocket;
 
@@ -20,10 +22,50 @@ static void ClientHandler(int index) {
 	std::cout << "Пользователь отключился от сервера!\n";
 }
 
+// разделение строки по заданному символу на массив подстрок
+void splitStrBySymbol(char* str, const char separetor[], int* rows, char words[100][256])
+{
+	char* strTmp = (char*)malloc(strlen(str) * sizeof(char));
+	strcpy(strTmp, str);
+	//получение подстроки по символу
+	char* tmpStr = strtok(strTmp, separetor);
+	// выделение последующих частей строки
+	do {
+		//запись подстроки в массив
+		strcpy(words[*rows], tmpStr);
+		(*rows)++;
+		// переход к следующей подстроке по заданному символу
+		tmpStr = strtok(NULL, separetor);
+	} while (tmpStr != NULL);
+}
+
+
+
+
 int main(int argc, char* argv[]) {
+
 	setlocale(LC_ALL, "RU");// кириллица вывода в консоль
-	
 	std::cout << "Сервер готов к работе и ожидает подключения...\n";
+	
+
+
+	std::vector<std::string> data = ListenSocket.log.read();
+	if (data.size() > 0) {
+		std::cout << "Log сервера:\n";
+		for (int i = 0; i < data.size(); i++) {
+			int size = 0;// колво слов в строке
+			char words[1000][256];// объявление массива из 1000 слов, каждое длиной до 256 символов
+			char tstr[255];
+			const char* cstr = data[i].c_str();
+			strcpy(tstr, cstr);
+			// вызов функции для разделения строки на слова
+			splitStrBySymbol(tstr, "|", &size, words);// передаем пробел и табуляцию
+			std::cout << words[2] << " (" << words[0] << "): " << words[1] << endl;
+		}
+	}
+
+		
+
 	// поддержка 100 соединений и их прослушка
 	for (int i = 0; i < 100; i++) {
 		

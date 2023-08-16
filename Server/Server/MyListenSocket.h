@@ -4,6 +4,11 @@
 #include "SQLite.h"
 #include <iostream>
 #include <vector>
+#include <Windows.h>
+#include "Logger.h"
+
+
+
 // устранение предупреждений
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #pragma warning(disable: 4996)
@@ -20,12 +25,14 @@ class MyListenSocket
 {
 private:
 	WSAData wsaData;// информация о работе и версии библиотеки winsock
+	
+
 
 public:
 	SOCKET Connections[100];// массив соединений
 	int Counter;// количество соединений с сервером
 	HANDLE Handle[100];// идентификатор потока
-
+	Logger log;
 
 	// заполнение информации об адресе сокета
 	SOCKADDR_IN addrSocket;
